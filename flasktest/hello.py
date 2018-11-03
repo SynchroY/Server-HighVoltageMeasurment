@@ -8,9 +8,12 @@ manager = Manager(app)
 def index():
     return '<h1>Hello World!</h1>'
 
-@app.route('/test/')
+@app.route('/test',methods=['GET','POST'])
 def test():
-    msg = request.args.get('data')
+    if request.method  == 'GET':
+        msg = request.args.get('data')
+    else:
+        msg = request.form.get('data')
     return msg
 
 if __name__ == '__main__':
